@@ -30,21 +30,21 @@ const analysisSchema = {
   required: ['emotion', 'reasoning', 'songName', 'artist', 'youtubeVideoId'],
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-function base64ToGenerativePart(base64Data: string, mimeType: string) {
-  return {
-    inlineData: {
-      data: base64Data,
-      mimeType,
+const emotionDetectionSchema = {
+    type: Type.OBJECT,
+    properties: {
+        emotion: {
+            type: Type.STRING,
+            description: "The dominant emotion detected from the user's facial expression (e.g., Happy, Sad, Surprised)."
+        },
+        emoji: {
+            type: Type.STRING,
+            description: "An emoji that represents the detected emotion."
+        }
     },
-  };
-}
+    required: ["emotion", "emoji"]
+};
 
-=======
->>>>>>> a0786f6 (Add)
-=======
->>>>>>> 76a6268 (Initial commit)
 async function getGeminiJsonResponse(contents: any): Promise<AnalysisResult> {
   try {
     const response = await ai.models.generateContent({
@@ -68,36 +68,40 @@ async function getGeminiJsonResponse(contents: any): Promise<AnalysisResult> {
   }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-export async function analyzeImageForSongSuggestion(base64Image: string): Promise<AnalysisResult> {
-  const imageMimeType = base64Image.substring(5, base64Image.indexOf(';'));
-  const imageData = base64Image.split(',')[1];
-  
-  if (!imageData) {
-      throw new Error("Invalid base64 image data");
-  }
+export async function getEmotionFromImage(base64ImageData: string): Promise<{ emotion: string; emoji: string; }> {
+    const imagePart = {
+        inlineData: {
+            mimeType: 'image/jpeg',
+            data: base64ImageData,
+        },
+    };
+    const textPart = {
+        text: "Analyze the facial expression in this image and identify the dominant emotion. Respond with the emotion and a corresponding emoji. Only choose from the following emotions: Happy, Sad, Romantic, Energetic, Calm, Devotional, Motivational, Nostalgic, Playful, Melancholic, Patriotic, Celebratory, Thoughtful, Angry, Hopeful. Respond ONLY with a JSON object matching the provided schema."
+    };
+    
+    try {
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: { parts: [imagePart, textPart] },
+            config: {
+                responseMimeType: "application/json",
+                responseSchema: emotionDetectionSchema,
+            }
+        });
 
-  const imagePart = base64ToGenerativePart(imageData, imageMimeType);
-  
-  const prompt = `Analyze the facial expression and dominant emotion in this image. Based on this analysis, suggest a Kannada song that perfectly matches the mood. The song can be new, old, popular, or a hidden gem. Your goal is to provide a diverse and interesting suggestion. Describe the detected emotion and provide a brief reason for your song choice. Finally, provide the song name, artist, and the YouTube video ID for the song. Respond ONLY with a JSON object matching the provided schema.`;
-
-  const contents = { parts: [imagePart, { text: prompt }] };
-  return getGeminiJsonResponse(contents);
+        const jsonText = response.text.trim();
+        const result = JSON.parse(jsonText);
+        return result;
+    } catch (error) {
+        console.error("Error detecting emotion from image:", error);
+        if (error instanceof Error) {
+            throw new Error(`Failed to get emotion from Gemini API: ${error.message}`);
+        }
+        throw new Error("An unknown error occurred during emotion detection.");
+    }
 }
 
-=======
->>>>>>> 76a6268 (Initial commit)
 export async function getSongSuggestionForEmotion(emotion: string): Promise<AnalysisResult> {
   const prompt = `Suggest a Kannada song that fits the feeling of '${emotion}'. The song can be new, old, popular, or a hidden gem. Your goal is to provide a diverse and interesting suggestion. The response 'emotion' field should be exactly '${emotion}'. Describe why this song fits the mood. Provide the song name, artist, and the YouTube video ID for the song. Respond ONLY with a JSON object matching the provided schema.`;
   return getGeminiJsonResponse(prompt);
 }
-<<<<<<< HEAD
-=======
-export async function getSongSuggestionForEmotion(emotion: string): Promise<AnalysisResult> {
-  const prompt = `Suggest a Kannada song that fits the feeling of '${emotion}'. The song can be new, old, popular, or a hidden gem. Your goal is to provide a diverse and interesting suggestion. The response 'emotion' field should be exactly '${emotion}'. Describe why this song fits the mood. Provide the song name, artist, and the YouTube video ID for the song. Respond ONLY with a JSON object matching the provided schema.`;
-  return getGeminiJsonResponse(prompt);
-}
->>>>>>> a0786f6 (Add)
-=======
->>>>>>> 76a6268 (Initial commit)

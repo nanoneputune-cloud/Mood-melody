@@ -2,67 +2,21 @@ import React, { useState } from 'react';
 import CameraCapture from './components/CameraCapture';
 import EmotionAnalysis from './components/EmotionAnalysis';
 import Loader from './components/Loader';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { analyzeImageForSongSuggestion, getSongSuggestionForEmotion } from './services/geminiService';
-import type { AnalysisResult } from './types';
-
-const App: React.FC = () => {
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
-=======
-import { getSongSuggestionForEmotion } from './services/geminiService';
-import type { AnalysisResult } from './types';
-
-const App: React.FC = () => {
->>>>>>> a0786f6 (Add)
-=======
-import { getSongSuggestionForEmotion } from './services/geminiService';
+import { getSongSuggestionForEmotion, getEmotionFromImage } from './services/geminiService';
 import type { AnalysisResult } from './types';
 
 const App = () => {
->>>>>>> 76a6268 (Initial commit)
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loadingMessage, setLoadingMessage] = useState<string>("Analyzing your mood...");
   const [error, setError] = useState<string | null>(null);
   const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const handleCapture = async (capturedImageSrc: string) => {
-    setImageSrc(capturedImageSrc);
-    setIsLoading(true);
-    setError(null);
-    setAnalysisResult(null);
-    setSelectedEmoji(null);
-
-    try {
-      const result = await analyzeImageForSongSuggestion(capturedImageSrc);
-      setAnalysisResult(result);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred.';
-      setError(errorMessage);
-      // Reset image so user can try again from capture screen
-      setImageSrc(null);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-=======
->>>>>>> a0786f6 (Add)
-=======
->>>>>>> 76a6268 (Initial commit)
   const handleEmotionSelect = async (emotion: string, emoji: string) => {
+    setLoadingMessage("Finding the perfect song...");
     setIsLoading(true);
     setError(null);
     setAnalysisResult(null);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    setImageSrc(null);
-=======
->>>>>>> a0786f6 (Add)
-=======
->>>>>>> 76a6268 (Initial commit)
     setSelectedEmoji(emoji);
 
     try {
@@ -76,15 +30,33 @@ const App = () => {
     }
   };
 
+  const handlePhotoCapture = async (base64Data: string) => {
+    setLoadingMessage("Detecting your emotion...");
+    setIsLoading(true);
+    setError(null);
+    setAnalysisResult(null);
+    setSelectedEmoji(null);
+    
+    try {
+      // Step 1: Detect emotion from the image
+      const emotionResult = await getEmotionFromImage(base64Data);
+      setSelectedEmoji(emotionResult.emoji);
+      
+      setLoadingMessage("Finding the perfect song...");
+      // Step 2: Get song suggestion for the detected emotion
+      const songResult = await getSongSuggestionForEmotion(emotionResult.emotion);
+      setAnalysisResult(songResult);
+
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred.';
+      setError(errorMessage);
+    } finally {
+        setIsLoading(false);
+    }
+  };
+
 
   const handleRetry = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    setImageSrc(null);
-=======
->>>>>>> a0786f6 (Add)
-=======
->>>>>>> 76a6268 (Initial commit)
     setAnalysisResult(null);
     setError(null);
     setSelectedEmoji(null);
@@ -102,7 +74,7 @@ const App = () => {
       </header>
       
       <main className="w-full flex-grow flex items-center justify-center">
-        {isLoading && <Loader />}
+        {isLoading && <Loader message={loadingMessage} />}
         
         {error && !isLoading && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative max-w-md text-center" role="alert">
@@ -117,27 +89,16 @@ const App = () => {
           </div>
         )}
 
-        {!analysisResult && !isLoading && !error && (
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <CameraCapture onCapture={handleCapture} onEmotionSelect={handleEmotionSelect} />
-=======
-            <CameraCapture onEmotionSelect={handleEmotionSelect} />
->>>>>>> a0786f6 (Add)
-=======
-            <CameraCapture onEmotionSelect={handleEmotionSelect} />
->>>>>>> 76a6268 (Initial commit)
+        {!analysisResult && !error && (
+            <CameraCapture 
+                onPhotoCapture={handlePhotoCapture} 
+                onEmotionSelect={handleEmotionSelect}
+                isProcessing={isLoading}
+            />
         )}
 
         {analysisResult && !isLoading && !error && (
             <EmotionAnalysis 
-<<<<<<< HEAD
-<<<<<<< HEAD
-              imageSrc={imageSrc ?? undefined} 
-=======
->>>>>>> a0786f6 (Add)
-=======
->>>>>>> 76a6268 (Initial commit)
               emoji={selectedEmoji ?? undefined}
               analysis={analysisResult} 
               onRetry={handleRetry} 
