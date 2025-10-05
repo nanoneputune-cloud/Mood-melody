@@ -1,6 +1,10 @@
 import React from 'react';
 
+<<<<<<< HEAD
 const RetryIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+=======
+const RetryIcon = (props: React.SVGProps<SVGSVGElement>) => (
+>>>>>>> 76a6268 (Initial commit)
     <svg 
         xmlns="http://www.w3.org/2000/svg" 
         width="24" 

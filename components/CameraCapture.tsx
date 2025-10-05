@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import CameraIcon from './icons/CameraIcon';
 
@@ -9,6 +10,11 @@ import React from 'react';
 
 interface CameraCaptureProps {
 >>>>>>> a0786f6 (Add)
+=======
+import React from 'react';
+
+interface CameraCaptureProps {
+>>>>>>> 76a6268 (Initial commit)
   onEmotionSelect: (emotion: string, emoji: string) => void;
 }
 
@@ -31,6 +37,7 @@ const emotions = [
 ];
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onEmotionSelect }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -139,6 +146,9 @@ const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onEmotionSelec
       <canvas ref={canvasRef} className="hidden"></canvas>
 =======
 const CameraCapture: React.FC<CameraCaptureProps> = ({ onEmotionSelect }) => {
+=======
+const CameraCapture = ({ onEmotionSelect }: CameraCaptureProps) => {
+>>>>>>> 76a6268 (Initial commit)
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4">
       <div className="w-full text-center">
@@ -159,7 +169,10 @@ const CameraCapture: React.FC<CameraCaptureProps> = ({ onEmotionSelect }) => {
             ))}
           </div>
       </div>
+<<<<<<< HEAD
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
     </div>
   );
 };

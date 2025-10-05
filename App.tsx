@@ -3,6 +3,7 @@ import CameraCapture from './components/CameraCapture';
 import EmotionAnalysis from './components/EmotionAnalysis';
 import Loader from './components/Loader';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { analyzeImageForSongSuggestion, getSongSuggestionForEmotion } from './services/geminiService';
 import type { AnalysisResult } from './types';
 
@@ -14,11 +15,18 @@ import type { AnalysisResult } from './types';
 
 const App: React.FC = () => {
 >>>>>>> a0786f6 (Add)
+=======
+import { getSongSuggestionForEmotion } from './services/geminiService';
+import type { AnalysisResult } from './types';
+
+const App = () => {
+>>>>>>> 76a6268 (Initial commit)
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   const handleCapture = async (capturedImageSrc: string) => {
     setImageSrc(capturedImageSrc);
@@ -42,14 +50,19 @@ const App: React.FC = () => {
 
 =======
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
   const handleEmotionSelect = async (emotion: string, emoji: string) => {
     setIsLoading(true);
     setError(null);
     setAnalysisResult(null);
 <<<<<<< HEAD
+<<<<<<< HEAD
     setImageSrc(null);
 =======
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
     setSelectedEmoji(emoji);
 
     try {
@@ -66,9 +79,12 @@ const App: React.FC = () => {
 
   const handleRetry = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     setImageSrc(null);
 =======
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
     setAnalysisResult(null);
     setError(null);
     setSelectedEmoji(null);
@@ -103,18 +119,25 @@ const App: React.FC = () => {
 
         {!analysisResult && !isLoading && !error && (
 <<<<<<< HEAD
+<<<<<<< HEAD
             <CameraCapture onCapture={handleCapture} onEmotionSelect={handleEmotionSelect} />
 =======
             <CameraCapture onEmotionSelect={handleEmotionSelect} />
 >>>>>>> a0786f6 (Add)
+=======
+            <CameraCapture onEmotionSelect={handleEmotionSelect} />
+>>>>>>> 76a6268 (Initial commit)
         )}
 
         {analysisResult && !isLoading && !error && (
             <EmotionAnalysis 
 <<<<<<< HEAD
+<<<<<<< HEAD
               imageSrc={imageSrc ?? undefined} 
 =======
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
               emoji={selectedEmoji ?? undefined}
               analysis={analysisResult} 
               onRetry={handleRetry} 

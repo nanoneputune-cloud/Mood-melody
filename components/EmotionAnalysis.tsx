@@ -4,14 +4,18 @@ import RetryIcon from './icons/RetryIcon';
 
 interface EmotionAnalysisProps {
 <<<<<<< HEAD
+<<<<<<< HEAD
   imageSrc?: string;
 =======
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
   emoji?: string;
   analysis: AnalysisResult;
   onRetry: () => void;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const EmotionAnalysis: React.FC<EmotionAnalysisProps> = ({ imageSrc, emoji, analysis, onRetry }) => {
   const youtubeEmbedUrl = `https://www.youtube.com/embed/${analysis.youtubeVideoId}?autoplay=1`;
@@ -60,6 +64,9 @@ const EmotionAnalysis: React.FC<EmotionAnalysisProps> = ({ imageSrc, emoji, anal
 
 =======
 const EmotionAnalysis: React.FC<EmotionAnalysisProps> = ({ emoji, analysis, onRetry }) => {
+=======
+const EmotionAnalysis = ({ emoji, analysis, onRetry }: EmotionAnalysisProps) => {
+>>>>>>> 76a6268 (Initial commit)
   const youtubeEmbedUrl = `https://www.youtube.com/embed/${analysis.youtubeVideoId}?autoplay=1`;
 
   return (
@@ -91,7 +98,10 @@ const EmotionAnalysis: React.FC<EmotionAnalysisProps> = ({ emoji, analysis, onRe
 
             <h3 className="text-xl font-bold text-blue-600 mb-2">Emotion: <span className="text-gray-900">{analysis.emotion}</span></h3>
             <p className="text-gray-700 italic">"{analysis.reasoning}"</p>
+<<<<<<< HEAD
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
         </div>
 
         <button
@@ -105,7 +115,11 @@ const EmotionAnalysis: React.FC<EmotionAnalysisProps> = ({ emoji, analysis, onRe
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default EmotionAnalysis;
 =======
 export default EmotionAnalysis;
 >>>>>>> a0786f6 (Add)
+=======
+export default EmotionAnalysis;
+>>>>>>> 76a6268 (Initial commit)

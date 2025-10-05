@@ -1,6 +1,10 @@
 import React from 'react';
 
+<<<<<<< HEAD
 const CameraIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+=======
+const CameraIcon = (props: React.SVGProps<SVGSVGElement>) => (
+>>>>>>> 76a6268 (Initial commit)
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

@@ -1,6 +1,10 @@
 import React from 'react';
 
+<<<<<<< HEAD
 const Loader: React.FC = () => {
+=======
+const Loader = () => {
+>>>>>>> 76a6268 (Initial commit)
   return (
     <div className="fixed inset-0 bg-white bg-opacity-80 flex flex-col justify-center items-center z-50">
       <div className="w-16 h-16 border-4 border-t-4 border-gray-400 border-t-blue-500 rounded-full animate-spin"></div>

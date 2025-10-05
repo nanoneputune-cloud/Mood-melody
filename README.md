@@ -3,10 +3,13 @@
 </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Mood-melody
 
 =======
 >>>>>>> a0786f6 (Add)
+=======
+>>>>>>> 76a6268 (Initial commit)
 # Run and deploy your AI Studio app
 
 This contains everything you need to run your app locally.
@@ -18,15 +21,23 @@ View your app in AI Studio: https://ai.studio/apps/drive/1AcSY79n9T4cjvlFB2vszIg
 **Prerequisites:**  Node.js
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> a0786f6 (Add)
+=======
+
+>>>>>>> 76a6268 (Initial commit)
 1. Install dependencies:
    `npm install`
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
 <<<<<<< HEAD
+<<<<<<< HEAD
    `npm run dev`
 =======
    `npm run dev`
 >>>>>>> a0786f6 (Add)
+=======
+   `npm run dev`
+>>>>>>> 76a6268 (Initial commit)
