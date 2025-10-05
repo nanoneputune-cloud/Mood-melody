@@ -1,7 +1,13 @@
 {
   "name": "Mood Melody",
+<<<<<<< HEAD
   "description": "Capture a photo with your camera, and this app will analyze your facial expression to suggest a Kannada song from YouTube that matches your mood.",
   "requestFramePermissions": [
     "camera"
   ]
 }
+=======
+  "description": "Select your mood, and this app will suggest a Kannada song from YouTube that matches it.",
+  "requestFramePermissions": []
+}
+>>>>>>> a0786f6 (Add)

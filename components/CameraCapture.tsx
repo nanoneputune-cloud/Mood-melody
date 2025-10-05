@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import CameraIcon from './icons/CameraIcon';
 
 interface CameraCaptureProps {
   onCapture: (imageSrc: string) => void;
+=======
+import React from 'react';
+
+interface CameraCaptureProps {
+>>>>>>> a0786f6 (Add)
   onEmotionSelect: (emotion: string, emoji: string) => void;
 }
 
@@ -25,6 +31,7 @@ const emotions = [
 ];
 
 
+<<<<<<< HEAD
 const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onEmotionSelect }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -130,6 +137,29 @@ const CameraCapture: React.FC<CameraCaptureProps> = ({ onCapture, onEmotionSelec
         </div>
       )}
       <canvas ref={canvasRef} className="hidden"></canvas>
+=======
+const CameraCapture: React.FC<CameraCaptureProps> = ({ onEmotionSelect }) => {
+  return (
+    <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4">
+      <div className="w-full text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Find a Song for Your Mood</h2>
+          <p className="text-gray-600 mb-12">Pick a mood and we'll find the perfect Kannada song for you.</p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            {emotions.map(({ name, emoji }) => (
+              <button
+                key={name}
+                onClick={() => onEmotionSelect(name, emoji)}
+                className="bg-white text-gray-800 font-semibold py-3 px-4 rounded-lg hover:bg-gray-100 border border-gray-200 transition-all duration-300 flex flex-col items-center gap-2 w-28 h-28 justify-center shadow-md transform hover:scale-105"
+                aria-label={`Find a song for ${name} mood`}
+              >
+                <span className="text-4xl" aria-hidden="true">{emoji}</span>
+                <span>{name}</span>
+              </button>
+            ))}
+          </div>
+      </div>
+>>>>>>> a0786f6 (Add)
     </div>
   );
 };

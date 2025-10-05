@@ -30,6 +30,7 @@ const analysisSchema = {
   required: ['emotion', 'reasoning', 'songName', 'artist', 'youtubeVideoId'],
 };
 
+<<<<<<< HEAD
 function base64ToGenerativePart(base64Data: string, mimeType: string) {
   return {
     inlineData: {
@@ -39,6 +40,8 @@ function base64ToGenerativePart(base64Data: string, mimeType: string) {
   };
 }
 
+=======
+>>>>>>> a0786f6 (Add)
 async function getGeminiJsonResponse(contents: any): Promise<AnalysisResult> {
   try {
     const response = await ai.models.generateContent({
@@ -62,6 +65,7 @@ async function getGeminiJsonResponse(contents: any): Promise<AnalysisResult> {
   }
 }
 
+<<<<<<< HEAD
 export async function analyzeImageForSongSuggestion(base64Image: string): Promise<AnalysisResult> {
   const imageMimeType = base64Image.substring(5, base64Image.indexOf(';'));
   const imageData = base64Image.split(',')[1];
@@ -82,3 +86,9 @@ export async function getSongSuggestionForEmotion(emotion: string): Promise<Anal
   const prompt = `Suggest a Kannada song that fits the feeling of '${emotion}'. The song can be new, old, popular, or a hidden gem. Your goal is to provide a diverse and interesting suggestion. The response 'emotion' field should be exactly '${emotion}'. Describe why this song fits the mood. Provide the song name, artist, and the YouTube video ID for the song. Respond ONLY with a JSON object matching the provided schema.`;
   return getGeminiJsonResponse(prompt);
 }
+=======
+export async function getSongSuggestionForEmotion(emotion: string): Promise<AnalysisResult> {
+  const prompt = `Suggest a Kannada song that fits the feeling of '${emotion}'. The song can be new, old, popular, or a hidden gem. Your goal is to provide a diverse and interesting suggestion. The response 'emotion' field should be exactly '${emotion}'. Describe why this song fits the mood. Provide the song name, artist, and the YouTube video ID for the song. Respond ONLY with a JSON object matching the provided schema.`;
+  return getGeminiJsonResponse(prompt);
+}
+>>>>>>> a0786f6 (Add)

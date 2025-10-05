@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import CameraCapture from './components/CameraCapture';
 import EmotionAnalysis from './components/EmotionAnalysis';
 import Loader from './components/Loader';
+<<<<<<< HEAD
 import { analyzeImageForSongSuggestion, getSongSuggestionForEmotion } from './services/geminiService';
 import type { AnalysisResult } from './types';
 
 const App: React.FC = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+=======
+import { getSongSuggestionForEmotion } from './services/geminiService';
+import type { AnalysisResult } from './types';
+
+const App: React.FC = () => {
+>>>>>>> a0786f6 (Add)
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedEmoji, setSelectedEmoji] = useState<string | null>(null);
 
+<<<<<<< HEAD
   const handleCapture = async (capturedImageSrc: string) => {
     setImageSrc(capturedImageSrc);
     setIsLoading(true);
@@ -32,11 +40,16 @@ const App: React.FC = () => {
     }
   };
 
+=======
+>>>>>>> a0786f6 (Add)
   const handleEmotionSelect = async (emotion: string, emoji: string) => {
     setIsLoading(true);
     setError(null);
     setAnalysisResult(null);
+<<<<<<< HEAD
     setImageSrc(null);
+=======
+>>>>>>> a0786f6 (Add)
     setSelectedEmoji(emoji);
 
     try {
@@ -52,7 +65,10 @@ const App: React.FC = () => {
 
 
   const handleRetry = () => {
+<<<<<<< HEAD
     setImageSrc(null);
+=======
+>>>>>>> a0786f6 (Add)
     setAnalysisResult(null);
     setError(null);
     setSelectedEmoji(null);
@@ -86,12 +102,19 @@ const App: React.FC = () => {
         )}
 
         {!analysisResult && !isLoading && !error && (
+<<<<<<< HEAD
             <CameraCapture onCapture={handleCapture} onEmotionSelect={handleEmotionSelect} />
+=======
+            <CameraCapture onEmotionSelect={handleEmotionSelect} />
+>>>>>>> a0786f6 (Add)
         )}
 
         {analysisResult && !isLoading && !error && (
             <EmotionAnalysis 
+<<<<<<< HEAD
               imageSrc={imageSrc ?? undefined} 
+=======
+>>>>>>> a0786f6 (Add)
               emoji={selectedEmoji ?? undefined}
               analysis={analysisResult} 
               onRetry={handleRetry} 
